@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>🏏 Admin Panel - SaveItBro Cricket</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#CC3300">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- Navigation -->
+    <nav class="navbar admin-nav">
+        <div class="nav-container">            <div class="nav-logo">
+                <i class="fas fa-cricket-bat-ball"></i>
+                <span>🏏 SaveItBro Cricket - Admin</span>
+            </div>
+            <div class="nav-menu">                <ul class="nav-list">                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">
+                            <i class="fas fa-home"></i> Back to Site
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link logout-btn" id="logout-btn">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-controls">
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <div class="admin-container">
+        <div class="admin-sidebar">
+            <div class="sidebar-menu">
+                <button class="sidebar-btn active" data-tab="dashboard">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>Dashboard</span>
+                </button>
+                <button class="sidebar-btn" data-tab="add-channel">
+                    <i class="fas fa-plus"></i>
+                    <span>Add Channel</span>
+                </button>                <button class="sidebar-btn" data-tab="manage-channels">
+                    <i class="fas fa-list"></i>
+                    <span>Manage Channels</span>
+                </button>
+                <button class="sidebar-btn" data-tab="hero-images">
+                    <i class="fas fa-images"></i>
+                    <span>Hero Images</span>
+                </button>
+                <button class="sidebar-btn" data-tab="settings">
+                    <i class="fas fa-cog"></i>
+                    <span>Settings</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="admin-content">
+            <!-- Dashboard Tab -->
+            <div class="admin-tab active" id="dashboard">
+                <div class="admin-header">
+                    <h1>Dashboard</h1>
+                    <p>Manage your cricket streaming channels</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="total-channels-stat">0</h3>
+                            <p>Total Channels</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>24/7</h3>
+                            <p>Live Streaming</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>HD</h3>
+                            <p>Stream Quality</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="last-updated">Never</h3>
+                            <p>Last Updated</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list" id="activity-list">
+                        <div class="activity-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Admin panel initialized</span>
+                            <small>Just now</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Channel Tab -->
+            <div class="admin-tab" id="add-channel">
+                <div class="admin-header">
+                    <h1>Add New Channel</h1>
+                    <p>Add a new live streaming channel</p>
+                </div>
+
+                <div class="form-container">
+                    <form id="add-channel-form" class="admin-form">
+                        <div class="form-group">
+                            <label for="match-title">Match Title *</label>
+                            <input type="text" id="match-title" name="matchTitle" required placeholder="e.g., India vs Australia - Test Match">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="channel-name">Channel Name *</label>
+                            <input type="text" id="channel-name" name="channelName" required placeholder="e.g., Star Sports 1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="embed-code">Embed Code (iframe) *</label>
+                            <textarea id="embed-code" name="embedCode" required rows="4" placeholder="Paste your iframe embed code here..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category</label>
+                            <select id="category" name="category">
+                                <option value="Sports">Sports</option>
+                                <option value="ICC">ICC</option>
+                                <option value="IPL">IPL</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" rows="3" placeholder="Optional description for the channel..."></textarea>
+                        </div>                        <div class="form-group">
+                            <label>Channel Thumbnail/Logo</label>
+                            <div class="thumbnail-upload-section">
+                                <div class="upload-options">
+                                    <div class="upload-option">
+                                        <label>
+                                            <input type="radio" name="thumbnailOption" value="url" checked>
+                                            <span>Use URL</span>
+                                        </label>
+                                        <div class="url-input-group">
+                                            <input type="url" id="logo-url" name="logoUrl" placeholder="https://example.com/logo.png">
+                                            <button type="button" class="btn btn-secondary btn-small" id="preview-logo">
+                                                <i class="fas fa-eye"></i>
+                                                Preview
+                                            </button>
+                                        </div>
+                                        <small>Enter a direct URL to the channel logo image</small>
+                                    </div>
+                                    
+                                    <div class="upload-option">
+                                        <label>
+                                            <input type="radio" name="thumbnailOption" value="upload">
+                                            <span>Upload Image</span>
+                                        </label>
+                                        <div class="file-input-group">
+                                            <input type="file" id="logo-file" name="logoFile" accept="image/*" style="display: none;">
+                                            <button type="button" class="btn btn-secondary" id="upload-logo-btn">
+                                                <i class="fas fa-upload"></i>
+                                                Choose Image
+                                            </button>
+                                            <span id="file-name" class="file-name"></span>
+                                        </div>
+                                        <small>Upload PNG, JPG, GIF, or SVG image (max 2MB)</small>
+                                    </div>
+                                </div>
+                                
+                                <div class="logo-preview-container" id="logo-preview-container" style="display: none;">
+                                    <div class="preview-header">
+                                        <span>Preview:</span>
+                                        <button type="button" class="btn btn-danger btn-small" id="clear-logo">
+                                            <i class="fas fa-times"></i>
+                                            Clear
+                                        </button>
+                                    </div>
+                                    <img id="logo-preview" src="" alt="Logo Preview">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus"></i>
+                                Add Channel
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i>
+                                Reset Form
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Manage Channels Tab -->
+            <div class="admin-tab" id="manage-channels">
+                <div class="admin-header">
+                    <h1>Manage Channels</h1>
+                    <p>Edit or delete existing channels</p>
+                </div>
+
+                <div class="channels-management">
+                    <div class="management-controls">
+                        <div class="search-container">
+                            <input type="text" id="manage-search" placeholder="Search channels..." class="search-input">
+                            <i class="fas fa-search search-icon"></i>
+                        </div>
+                        <button class="btn btn-danger" id="clear-all-btn">
+                            <i class="fas fa-trash"></i>
+                            Clear All
+                        </button>
+                    </div>
+
+                    <div class="channels-table-container">
+                        <table class="channels-table" id="channels-table">
+                            <thead>
+                                <tr>
+                                    <th>Match Title</th>
+                                    <th>Channel</th>
+                                    <th>Category</th>
+                                    <th>Added</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="channels-tbody">
+                                <!-- Channels will be loaded dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="no-channels" id="no-channels" style="display: none;">
+                        <i class="fas fa-tv"></i>
+                        <h3>No channels found</h3>
+                        <p>Add your first channel to get started</p>
+                        <button class="btn btn-primary" onclick="switchTab('add-channel')">
+                            <i class="fas fa-plus"></i>
+                            Add Channel
+                        </button>
+                    </div>
+                </div>            </div>
+
+            <!-- Hero Images Tab -->
+            <div class="admin-tab" id="hero-images">
+                <div class="admin-header">
+                    <h1>Hero Background Images</h1>
+                    <p>Manage background images for the hero section</p>
+                </div>
+
+                <div class="hero-images-management">
+                    <div class="add-image-section">
+                        <h3>Add New Background Image</h3>
+                        <form id="add-image-form" class="admin-form">
+                            <div class="form-group">
+                                <label for="image-url">Image URL *</label>
+                                <input type="url" id="image-url" name="imageUrl" required placeholder="https://example.com/image.jpg">
+                                <small>Enter a direct URL to an image (JPG, PNG, WebP)</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="image-title">Image Title</label>
+                                <input type="text" id="image-title" name="imageTitle" placeholder="e.g., Cricket World Cup Final">
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-plus"></i>
+                                    Add Image
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="preview-image">
+                                    <i class="fas fa-eye"></i>
+                                    Preview
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="current-images-section">
+                        <h3>Current Background Images</h3>
+                        <div class="images-grid" id="images-grid">
+                            <!-- Images will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="admin-tab" id="settings">
+                <div class="admin-header">
+                    <h1>Settings</h1>
+                    <p>Configure your streaming platform</p>
+                </div>
+
+                <div class="settings-container">
+                    <div class="settings-section">
+                        <h3>General Settings</h3>
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="auto-refresh" checked>
+                                <span class="checkmark"></span>
+                                Auto-refresh streams
+                            </label>
+                        </div>
+                        <div class="setting-item">
+                            <label>
+                                <input type="checkbox" id="show-categories" checked>
+                                <span class="checkmark"></span>
+                                Show category filters
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Data Management</h3>
+                        <div class="setting-actions">
+                            <button class="btn btn-secondary" id="export-data">
+                                <i class="fas fa-download"></i>
+                                Export Data
+                            </button>
+                            <button class="btn btn-secondary" id="import-data">
+                                <i class="fas fa-upload"></i>
+                                Import Data
+                            </button>
+                            <input type="file" id="import-file" accept=".json" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Reset Data</h3>
+                        <p class="warning-text">This will delete all channels and reset to default. This action cannot be undone.</p>
+                        <button class="btn btn-danger" id="reset-data">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Reset All Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Channel Modal -->
+    <div class="modal" id="edit-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Channel</h3>
+                <button class="modal-close" onclick="closeEditModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-channel-form" class="admin-form">
+                    <input type="hidden" id="edit-channel-id">
+                    
+                    <div class="form-group">
+                        <label for="edit-match-title">Match Title *</label>
+                        <input type="text" id="edit-match-title" name="matchTitle" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-channel-name">Channel Name *</label>
+                        <input type="text" id="edit-channel-name" name="channelName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-embed-code">Embed Code (iframe) *</label>
+                        <textarea id="edit-embed-code" name="embedCode" required rows="4"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-category">Category</label>
+                        <select id="edit-category" name="category">
+                            <option value="Sports">Sports</option>
+                            <option value="ICC">ICC</option>
+                            <option value="IPL">IPL</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>                    <div class="form-group">
+                        <label for="edit-description">Description</label>
+                        <textarea id="edit-description" name="description" rows="3"></textarea>
+                    </div>                    <div class="form-group">
+                        <label>Channel Thumbnail/Logo</label>
+                        <div class="thumbnail-upload-section">
+                            <div class="upload-options">
+                                <div class="upload-option">
+                                    <label>
+                                        <input type="radio" name="editThumbnailOption" value="url" checked>
+                                        <span>Use URL</span>
+                                    </label>
+                                    <div class="url-input-group">
+                                        <input type="url" id="edit-logo-url" name="logoUrl" placeholder="https://example.com/logo.png">
+                                        <button type="button" class="btn btn-secondary btn-small" id="edit-preview-logo">
+                                            <i class="fas fa-eye"></i>
+                                            Preview
+                                        </button>
+                                    </div>
+                                    <small>Enter a direct URL to the channel logo image</small>
+                                </div>
+                                
+                                <div class="upload-option">
+                                    <label>
+                                        <input type="radio" name="editThumbnailOption" value="upload">
+                                        <span>Upload Image</span>
+                                    </label>
+                                    <div class="file-input-group">
+                                        <input type="file" id="edit-logo-file" name="logoFile" accept="image/*" style="display: none;">
+                                        <button type="button" class="btn btn-secondary" id="edit-upload-logo-btn">
+                                            <i class="fas fa-upload"></i>
+                                            Choose Image
+                                        </button>
+                                        <span id="edit-file-name" class="file-name"></span>
+                                    </div>
+                                    <small>Upload PNG, JPG, GIF, or SVG image (max 2MB)</small>
+                                </div>
+                            </div>
+                            
+                            <div class="logo-preview-container" id="edit-logo-preview-container" style="display: none;">
+                                <div class="preview-header">
+                                    <span>Preview:</span>
+                                    <button type="button" class="btn btn-danger btn-small" id="edit-clear-logo">
+                                        <i class="fas fa-times"></i>
+                                        Clear
+                                    </button>
+                                </div>
+                                <img id="edit-logo-preview" src="" alt="Logo Preview">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="closeEditModal()">
+                            <i class="fas fa-times"></i>
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="admin.js"></script>
+</body>
+</html>

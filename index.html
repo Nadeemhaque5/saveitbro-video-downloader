@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>🏏 SaveItBro Cricket - Live Cricket Streaming Hub</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#CC3300">
+    
+    <!-- Meta Description -->
+    <meta name="description" content="SaveItBro Cricket - Your ultimate destination for live cricket streaming. Watch live cricket matches, tournaments, and highlights from around the world.">
+    <meta name="keywords" content="cricket, live streaming, sports, cricket matches, cricket tournaments, SaveItBro">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Loading Cricket Streams...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">            <div class="nav-logo">
+                <i class="fas fa-cricket-bat-ball"></i>
+                <span>🏏 SaveItBro Cricket</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active">Home</a>
+                    </li>                    <li class="nav-item">
+                        <a href="#live-streams" class="nav-link">Live Streams</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav-controls">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search channels..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <button class="theme-toggle" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="nav-toggle" id="nav-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <!-- Hero Background Images -->        <div class="hero-background-slider">
+            <div class="hero-slide active" style="background-image: url('images/hero-bg-1.jpg')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1574771875745-9dcf7b2c7b8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1578928474139-8d4dc2c3bd42?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')"></div>
+            <!-- Additional slides will be added here dynamically -->
+        </div>
+        
+        <!-- Hero Content -->
+        <div class="hero-content">
+            <!-- Image Controls -->
+            <div class="hero-controls">
+                <button class="hero-nav-btn" id="prev-slide">
+                    <i class="fas fa-chevron-left"></i>
+                </button>                <div class="hero-indicators" id="hero-indicators">
+                    <span class="indicator active" data-slide="0"></span>
+                    <span class="indicator" data-slide="1"></span>
+                    <span class="indicator" data-slide="2"></span>
+                    <span class="indicator" data-slide="3"></span>
+                    <span class="indicator" data-slide="4"></span>
+                </div>
+                <button class="hero-nav-btn" id="next-slide">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+        <div class="cricket-animation">
+            <i class="fas fa-cricket-bat-ball"></i>
+        </div>
+    </section>
+
+    <!-- Live Streams Section -->
+    <section class="streams-section" id="live-streams">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Live Cricket Streams</h2>
+                <p class="section-subtitle">Choose from our premium live streaming channels</p>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="filter-container">
+                <button class="filter-btn active" data-category="all">All</button>
+                <button class="filter-btn" data-category="Sports">Sports</button>
+                <button class="filter-btn" data-category="ICC">ICC</button>
+                <button class="filter-btn" data-category="IPL">IPL</button>
+            </div>
+
+            <!-- Stream Grid -->
+            <div class="streams-grid" id="streams-grid">
+                <!-- Streams will be loaded dynamically -->
+            </div>
+
+            <!-- No Results Message -->
+            <div class="no-results" id="no-results" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No streams found</h3>
+                <p>Try adjusting your search or filter criteria</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stream Modal -->
+    <div class="modal" id="stream-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modal-title">Stream Title</h3>
+                <button class="modal-close" id="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="stream-container" id="stream-container">
+                    <!-- Stream iframe will be loaded here -->
+                </div>
+                <div class="stream-info">
+                    <div class="stream-details">
+                        <span class="channel-name" id="modal-channel">Channel Name</span>
+                        <span class="live-indicator">
+                            <i class="fas fa-circle"></i> LIVE
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-cricket-bat-ball"></i>
+                        <span>SaveItBro Cricket</span>
+                    </div>
+                    <p>Your ultimate destination for live cricket streaming.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#live-streams">Live Streams</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 SaveItBro Cricket. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

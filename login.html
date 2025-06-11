@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>🏏 Admin Login - SaveItBro Cricket</title>
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#CC3300">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="login-body">
+    <!-- Background Animation -->
+    <div class="login-background">
+        <div class="cricket-particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+    </div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-cricket-bat-ball"></i>
+                </div>
+                <h1>Admin Login</h1>
+                <p>Access SaveItBro Cricket Admin Panel</p>
+            </div>
+
+            <form id="login-form" class="login-form">
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        Username
+                    </label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                    <div class="input-border"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        Password
+                    </label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                    <div class="input-border"></div>
+                    <button type="button" class="password-toggle" id="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="remember-me">
+                        <span class="checkmark"></span>
+                        Remember me for 7 days
+                    </label>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <span class="btn-text">Login</span>
+                    <i class="fas fa-arrow-right btn-icon"></i>
+                </button>
+
+                <div class="login-help">
+                    <p class="default-credentials">
+                        <i class="fas fa-info-circle"></i>
+                        Default: <strong>admin</strong> / <strong>admin123</strong>
+                    </p>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <a href="index.html" class="back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Website
+                </a>
+            </div>
+        </div>
+
+        <!-- Security Info -->
+        <div class="security-info">
+            <div class="security-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Secure Login</span>
+            </div>
+            <div class="security-item">
+                <i class="fas fa-clock"></i>
+                <span>Auto Logout</span>
+            </div>
+            <div class="security-item">
+                <i class="fas fa-eye-slash"></i>
+                <span>Private Access</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle login-theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Scripts -->
+    <script src="login.js"></script>
+</body>
+</html>

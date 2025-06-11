@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Admin Functionality</title>
+</head>
+<body>
+    <h1>Test Admin Panel</h1>
+    <button onclick="testAddChannel()">Test Add Channel</button>
+    <button onclick="testLoadChannels()">Test Load Channels</button>
+    <button onclick="clearStorage()">Clear Storage</button>
+    
+    <div id="output"></div>
+
+    <script>
+        function testAddChannel() {
+            const testChannel = {
+                id: 'test-' + Date.now(),
+                matchTitle: 'Test Match',
+                channelName: 'Test Channel',
+                embedCode: '<iframe src="https://example.com"></iframe>',
+                category: 'Sports',
+                description: 'Test description',
+                dateAdded: new Date().toISOString()
+            };
+
+            let channels = JSON.parse(localStorage.getItem('cricketChannels') || '[]');
+            channels.push(testChannel);
+            localStorage.setItem('cricketChannels', JSON.stringify(channels));
+            
+            // Trigger events
+            window.dispatchEvent(new StorageEvent('storage', {
+                key: 'cricketChannels',
+                newValue: JSON.stringify(channels)
+            }));
+            window.dispatchEvent(new CustomEvent('channelsUpdated'));
+            
+            document.getElementById('output').innerHTML = '<p>Channel added! Total channels: ' + channels.length + '</p>';
+            console.log('Test channel added:', testChannel);
+        }
+
+        function testLoadChannels() {
+            const channels = JSON.parse(localStorage.getItem('cricketChannels') || '[]');
+            document.getElementById('output').innerHTML = '<p>Loaded ' + channels.length + ' channels</p><pre>' + JSON.stringify(channels, null, 2) + '</pre>';
+            console.log('Loaded channels:', channels);
+        }
+
+        function clearStorage() {
+            localStorage.removeItem('cricketChannels');
+            document.getElementById('output').innerHTML = '<p>Storage cleared</p>';
+            console.log('Storage cleared');
+        }
+    </script>
+</body>
+</html>

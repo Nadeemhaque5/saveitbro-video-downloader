@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Rounded background -->
+  <circle cx="24" cy="24" r="20" fill="#2563eb" stroke="#1d4ed8" stroke-width="2"/>
+  
+  <!-- Cricket bat and ball design -->
+  <g transform="translate(24,24)">
+    <!-- Cricket bat -->
+    <rect x="-2" y="-12" width="4" height="16" rx="2" fill="#D2691E" stroke="#A0522D" stroke-width="0.5"/>
+    <rect x="-3" y="-14" width="6" height="3" rx="1" fill="#8B4513" stroke="#654321" stroke-width="0.5"/>
+    
+    <!-- Cricket ball -->
+    <circle cx="0" cy="6" r="4" fill="#CC3300" stroke="#990000" stroke-width="0.5"/>
+    <path d="M -3,6 Q 0,3 3,6 Q 0,9 -3,6" fill="none" stroke="#FFFFFF" stroke-width="0.8" stroke-linecap="round"/>
+    
+    <!-- Sparkle effects -->
+    <circle cx="-6" cy="-6" r="1" fill="#FFFFFF" opacity="0.8"/>
+    <circle cx="6" cy="-8" r="0.8" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="8" cy="2" r="0.6" fill="#FFFFFF" opacity="0.7"/>
+  </g>
+</svg>
